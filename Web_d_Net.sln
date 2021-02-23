@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_d_Net", "Web_d_Net.csproj", "{DB7C20E0-EF42-4DEC-BCD9-48A110BAAE5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListTreeSort", "ListTreeSort\ListTreeSort.csproj", "{7D116E5F-7596-4ED8-8144-813EC3F9A6C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB7C20E0-EF42-4DEC-BCD9-48A110BAAE5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB7C20E0-EF42-4DEC-BCD9-48A110BAAE5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB7C20E0-EF42-4DEC-BCD9-48A110BAAE5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB7C20E0-EF42-4DEC-BCD9-48A110BAAE5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D116E5F-7596-4ED8-8144-813EC3F9A6C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D116E5F-7596-4ED8-8144-813EC3F9A6C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D116E5F-7596-4ED8-8144-813EC3F9A6C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D116E5F-7596-4ED8-8144-813EC3F9A6C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
