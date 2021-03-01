@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.VisualBasic.FileIO;
 using static System.Console;
 
 namespace ListTreeSort
@@ -173,7 +174,7 @@ namespace ListTreeSort
             CLR(this.root, 0, depth);
         }
 
-        public void CLR(NodeTree<T> node, int depth, int ldepth)
+        private void CLR(NodeTree<T> node, int depth, int ldepth)
         {
             node.Depth = depth;
             if(depth != ldepth)
@@ -199,7 +200,7 @@ namespace ListTreeSort
         {
             var queue = new Queue<NodeTree<T>>();
             queue.Enqueue(this.root);
-            int current_depth = 0;
+            int current_depth = root.Depth;
             bool flag = true;
             while(flag)
             {
@@ -215,8 +216,16 @@ namespace ListTreeSort
                         Write("\n" + current.Id + " ");
                         current_depth = current.Depth;
                     }
-                    queue.Enqueue(current.Left);
-                    queue.Enqueue(current.Right);
+
+                    if (current.Left != null)
+                    {
+                        queue.Enqueue(current.Left);   
+                    }
+
+                    if (current.Right != null)
+                    {
+                        queue.Enqueue(current.Right);
+                    }
                 }
                 catch
                 {
@@ -224,6 +233,99 @@ namespace ListTreeSort
                     queue.Clear();
                 }
             }
+        }
+
+        public NodeTree<T> Search(int id)
+        {
+            NodeTree<T> result = root;
+
+            while (true)
+            {
+                if (result.Id == id)
+                {
+                    return result;
+                }
+                else
+                {
+                    if (result.Right.Id > id)
+                    {
+                        result = result.Left;
+                    }
+                    else result = result.Right;
+                }
+            }
+        }
+        
+        private NodeTree<T> SearchParent(int id)
+        {
+            NodeTree<T> child = this.root;
+            NodeTree<T> parent = null;
+            
+            while (true)
+            {
+                if (child.Id == id)
+                {
+                    return parent;
+                } else if (child.Right.Id > id)
+                {
+                    parent = child;
+                    child = child.Left;
+                }
+                else
+                {
+                    parent = child;
+                    child = child.Right;
+                }
+            }
+        }
+
+        private void ChangeDepth(NodeTree<T> elem, int depth)
+        {
+            if (elem != null)
+            {
+                elem.Depth = depth;
+                ChangeDepth(elem.Left, depth +  1);
+                ChangeDepth(elem.Right, depth + 1);
+            }
+        }
+
+        public void Remove(NodeTree<T> elem)
+        {
+            NodeTree<T> parent = SearchParent(elem.Id);
+            if (elem.Right != null)
+            {
+                if (elem.Left != null)
+                {
+                    NodeTree<T> buf = elem.Left;
+                    while (buf.Right != null)
+                    {
+                        buf = buf.Right;
+                    }
+
+                    buf.Right = elem.Right;
+                }
+                else
+                {
+                    elem.Left = elem.Right;
+                }
+            }
+
+            if (parent != null)
+            {
+                if (parent.Left.Id == elem.Id)
+                {
+                    parent.Left = elem.Left;
+                }
+                else
+                {
+                    parent.Right = elem.Left;
+                }
+            }
+            else
+            {
+                root = root.Left;
+            }
+            ChangeDepth(root, 0);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using ListTreeSort;
 using List = ListTreeSort.List<int>;
 using Tree = ListTreeSort.Tree<int>;
 using static System.Console;
@@ -42,7 +43,12 @@ namespace Web_d_Net
             MyTree.GetTree();
             
             WriteLine("\nSearching item with id 18...");
-            
+            NodeTree<int> elem = MyTree.Search(18);
+            WriteLine("Id of found element: " + elem.Id);
+            WriteLine("Removing this element...");
+            MyTree.Remove(elem);
+            WriteLine("Current tree:");
+            MyTree.GetTree();
         }
     }
 }
