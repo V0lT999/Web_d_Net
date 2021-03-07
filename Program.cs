@@ -2,13 +2,15 @@
 using ListTreeSort;
 using List = ListTreeSort.List<int>;
 using Tree = ListTreeSort.Tree<int>;
+using SL = ListTreeSort.SortArray;
+// using Array = ListTreeSort.SortList;
 using static System.Console;
 
 namespace Web_d_Net
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Task1()
         {
             WriteLine("Creating List...");
             List MyList = new List();
@@ -16,7 +18,7 @@ namespace Web_d_Net
             {
                 MyList.Add(i);
             }
-            Write("\nThe list is generated: ");
+            Write("The list was generated: ");
             MyList.GetList();
             
             WriteLine("\nDeleting the 5th element...");
@@ -35,6 +37,8 @@ namespace Web_d_Net
             MyList.GetList();
             
             //------------------
+            WriteLine();
+            //------------------
             
             WriteLine("\nCreating Tree...");
             Tree MyTree = new Tree();
@@ -49,6 +53,25 @@ namespace Web_d_Net
             MyTree.Remove(elem);
             WriteLine("Current tree:");
             MyTree.GetTree();
+            
+            //------------------
+            WriteLine();
+            //------------------
+            
+            WriteLine("\nCreating array...");
+            SL MySortArray = new SL();
+            MySortArray.Generate(10);
+            Write("The array was generated: ");
+            MySortArray.GetArray();
+            WriteLine("Sorting array...");
+            MySortArray.Sort();
+            Write("The array was sorted: ");
+            MySortArray.GetArray();
+        }
+        
+        static void Main(string[] args)
+        {
+           Task1();
         }
     }
 }

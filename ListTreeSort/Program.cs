@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Microsoft.VisualBasic.FileIO;
 using static System.Console;
 
@@ -37,6 +39,15 @@ namespace ListTreeSort
  
             count++;
         }
+
+        public void Generate(int ElementsCount)
+        {
+            Random rnd = new Random();
+            for (int i = 0; i < ElementsCount; i++)
+            {
+                this.Add((T)(object)(rnd.Next() % 200));
+            }
+        }
         
         public bool Remove(T data)
         {
@@ -70,8 +81,8 @@ namespace ListTreeSort
             return false;
         }
  
-        public int Count { get { return count; } }
-        public bool IsEmpty { get { return count == 0; } }
+        private int Count { get { return count; } }
+        private bool IsEmpty { get { return count == 0; } }
         
         public void Clear()
         {
@@ -122,7 +133,7 @@ namespace ListTreeSort
                 current = current.Next;
             }
         }
-        
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)this).GetEnumerator();
@@ -164,7 +175,7 @@ namespace ListTreeSort
     
     public class Tree<T>
     {
-        NodeTree<T> root;
+        private NodeTree<T> root;
         int n;
         public void Generate(int depth)
         {
@@ -326,6 +337,46 @@ namespace ListTreeSort
                 root = root.Left;
             }
             ChangeDepth(root, 0);
+        }
+    }
+
+    public class SortArray
+    {
+        private ArrayList mas = new ArrayList();
+
+        public void Generate(int ElementsCount)
+        {
+            Random rnd = new Random();
+            for (int i = 0; i < ElementsCount; i++)
+            {
+                this.mas.Add(rnd.Next() % 200);
+            }
+        }
+
+        public void GetArray()
+        {
+            foreach (var elem in this.mas)
+            {
+                Write(elem + " ");
+            }
+            WriteLine();
+        }
+
+        private void Swap(int i, int j)
+        {
+            int buf = (int)this.mas[i];
+            this.mas[i] = this.mas[j];
+            this.mas[j] = buf;
+        }
+        public void Sort()
+        {
+            for (int i = 1; i < mas.Count; i++)
+            {
+                for (int j = i; j > 0 && (int)mas[j - 1] > (int)mas[j]; j--)
+                {
+                    this.Swap(j, j - 1);
+                }
+            }
         }
     }
 }
